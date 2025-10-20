@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Card - Aisha Mustapha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 40px 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        top: -150px;
+        right: -150px;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      body::after {
+        content: '';
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        bottom: -100px;
+        left: -100px;
+        animation: float 15s infinite ease-in-out reverse;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(30px, 30px) scale(1.1);
+        }
+      }
+
+      .profile-card {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 900px;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        animation: slideUp 0.6s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .profile-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 50px 40px 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .profile-header::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        top: -100px;
+        right: -50px;
+      }
+
+      .profile-top {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .profile-avatar {
+        position: relative;
+        margin: 0;
+      }
+
+      .profile-avatar::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.5) 100%);
+        border-radius: 50%;
+        z-index: -1;
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+      }
+
+      .profile-avatar img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid white;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .profile-avatar img:hover {
+        transform: scale(1.05);
+      }
+
+      .profile-top h2 {
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-content {
+        padding: 40px;
+      }
+
+      .profile-info {
+        margin-bottom: 30px;
+      }
+
+      .profile-info p {
+        color: #4a5568;
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+
+      .current-time {
+        display: inline-flex;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        color: #667eea;
+        font-weight: 600;
+        border: 1px solid #667eea30;
+      }
+
+      .current-time span {
+        margin-left: 8px;
+        font-family: 'Courier New', monospace;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        padding: 10px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        display: inline-block;
+      }
+
+      nav a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      nav a:focus {
+        outline: 3px solid #667eea;
+        outline-offset: 2px;
+      }
+
+      .lists {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      section {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        padding: 25px;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+
+      section:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      section h3 {
+        color: #2d3748;
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      section h3::before {
+        content: '';
+        width: 4px;
+        height: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+      }
+
+      section ul {
+        list-style: none;
+      }
+
+      section li {
+        color: #4a5568;
+        padding: 8px 0;
+        padding-left: 24px;
+        position: relative;
+        font-size: 0.95rem;
+      }
+
+      section li::before {
+        content: '●';
+        position: absolute;
+        left: 8px;
+        color: #667eea;
+        font-size: 0.7rem;
+      }
+
+      @media (max-width: 768px) {
+        .profile-top {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .profile-top h2 {
+          font-size: 1.5rem;
+        }
+
+        .profile-header {
+          padding: 40px 30px 25px;
+        }
+
+        .profile-content {
+          padding: 30px 25px;
+        }
+
+        nav ul {
+          justify-content: center;
+        }
+
+        .lists {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .profile-card {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <article data-testid="test-profile-card" class="profile-card">
+      <div class="profile-header">
+        <div class="profile-top">
+          <figure class="profile-avatar">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Profile picture of Aisha Abike Mustapha" data-testid="test-user-avatar" />
+          </figure>
+          <h2 data-testid="test-user-name">Aisha Abike Mustapha</h2>
+        </div>
+      </div>
+
+      <div class="profile-content">
+        <div class="profile-info">
+          <p data-testid="test-user-bio">
+            I'm a passionate frontend developer on a journey to master 20 programming languages and build a global tech institution.
+          </p>
+          <p class="current-time">
+            Current Time (ms): <span data-testid="test-user-time"></span>
+          </p>
+          <nav data-testid="test-user-social-links">
+            <ul>
+              <li><a data-testid="test-user-social-twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+              <li><a data-testid="test-user-social-github" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a data-testid="test-user-social-linkedin" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="lists">
+          <section data-testid="test-user-hobbies">
+            <h3>Hobbies</h3>
+            <ul>
+              <li>Coding</li>
+              <li>Designing UI</li>
+              <li>Teaching</li>
+            </ul>
+          </section>
+
+          <section data-testid="test-user-dislikes">
+            <h3>Dislikes</h3>
+            <ul>
+              <li>Procrastination</li>
+              <li>Cluttered code</li>
+              <li>Unclear documentation</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <script>
+      const timeElement = document.querySelector('[data-testid="test-user-time"]');
+      function updateTime() {
+        timeElement.textContent = Date.now();
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+    </script>
+  </body>
+</html>
